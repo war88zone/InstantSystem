@@ -1,0 +1,16 @@
+/*
+ * This file is not an entry point but is intended to be included in the App.vue component.
+ * When the Vue application is built, the CSS will be extracted
+ * and will be compiled to /source/<app>/css/build.css
+ */
+
+ @import './mixins';
+ @import './variables';
+
+ body {
+	margin: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
