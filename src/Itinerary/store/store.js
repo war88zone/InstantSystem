@@ -1,13 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import actions from './actions'
+import mutations from './mutations'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
+	actions,
+	mutations,
 	state: {
-		mainColor: '#58811d',
-		mainColorLight: '#90cb48',
-		secondColor: '#ffffff'
+		currentMenuItemActive: -1,
+		mainColor: '',
+		mainColorLight: '',
+		menuItems: [],
+		secondColor: '',
+		showMenuPanel: false
 	}
 })
 

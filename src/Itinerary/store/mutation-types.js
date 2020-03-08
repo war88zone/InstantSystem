@@ -1,0 +1,6 @@
+export const UPDATE_CURRENT_MENU_ITEM_ACTIVE 	= 'updateCurrentMenuItemActive'
+export const UPDATE_SHOW_MENU_PANEL 					= 'updateShowMenuPanel'
+export const SET_MAIN_COLOR 									= 'setMainColor'
+export const SET_MAIN_COLOR_LIGHT 						= 'setMainColorLight'
+export const SET_SECOND_COLOR 								= 'setSecondColor'
+export const SET_MENU_ITEMS 									= 'setMenuItems'
