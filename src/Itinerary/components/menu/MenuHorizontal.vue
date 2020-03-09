@@ -1,5 +1,7 @@
 <template lang="html">
-	<div class="MenuHorizontal" :style="{ backgroundColor: mainColorLight}">
+	<div class="MenuHorizontal"
+	:class="isMenuActive ? 'MenuHorizontal--opened' : ''"
+	:style="{ backgroundColor: mainColorLight}">
 		<menu-button v-for="(menuItem, index) in menuItems"
 			:key="'menu-item_'+index"
 			:id="'menu-item_'+index"
@@ -22,7 +24,10 @@
 			MenuButton
 		},
 		computed: {
-			...mapState(['mainColorLight', 'menuItems', 'currentMenuItemActive'])
+			...mapState(['mainColorLight', 'menuItems', 'currentMenuItemActive']),
+			isMenuActive () {
+				return this.currentMenuItemActive >= 0
+			}
 		},
 		methods: {
 			updateCurrent (currentButtonId) {
@@ -42,7 +47,10 @@
 		display: flex;
 		width: 100%;
 		height: $menuHeight;
-		padding: .5rem 0;
-		box-shadow: 0 1px 10px 1px rgba(0, 0, 0, .4);
+		padding: $padding-tiny 0;
+
+		&--opened {
+			box-shadow: $boxShadow-light;
+		}
 	}
 </style>

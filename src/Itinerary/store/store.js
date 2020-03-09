@@ -10,11 +10,13 @@ const store = new Vuex.Store({
 	mutations,
 	state: {
 		currentMenuItemActive: -1,
+		logoHeader: '',
 		mainColor: '',
+		mainColorDark: '',
 		mainColorLight: '',
 		menuItems: [],
 		secondColor: '',
-		showMenuPanel: false
+		showPanel: false
 	}
 })
 

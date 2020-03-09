@@ -1,5 +1,7 @@
 <template lang="html">
-	<i class="material-icons" :style="{ color: fillColor}" alt="Search icon">search</i>
+	<i class="material-icons"
+	:style="{ color: fillColor}"
+	alt="Search icon">search</i>
 </template>
 
 <script>

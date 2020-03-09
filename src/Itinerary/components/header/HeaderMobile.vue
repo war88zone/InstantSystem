@@ -1,43 +1,47 @@
 <template lang="html">
 	<div class="HeaderMobile">
-		<burger-icon class="HeaderMobile-burgerIcon"></burger-icon>
+		<burger-button class="HeaderMobile-burgerButton"></burger-button>
 		<logo-header></logo-header>
-		<search-icon class="HeaderMobile-searchIcon"></search-icon>
+		<router-link :to="'/search'">
+			<search-button class="HeaderMobile-searchButton"></search-button>
+		</router-link>
 	</div>
 </template>
 
 <script>
-	import BurgerIcon from './BurgerIcon.vue'
+	import BurgerButton from './BurgerButton.vue'
 	import LogoHeader from './LogoHeader.vue'
-	import SearchIcon from './SearchIcon.vue'
+	import SearchButton from './SearchButton.vue'
 
 	export default {
-		name: 'headerMobile',
 		components: {
-			BurgerIcon,
+			BurgerButton,
 			LogoHeader,
-			SearchIcon
+			SearchButton
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
+	@import '../../../common/scss/_variables';
+
 	.HeaderMobile {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 1.5rem;
+    padding: $padding-small $padding-medium;
+    background-color: white;
 
-		&-burgerIcon,
-		&-searchIcon {
-			width: 2rem;
-			height: 2rem;
-			line-height: 2rem;
+		&-burgerButton,
+		&-searchButton {
+			width: $padding-large;
+			height: $padding-large;
+			line-height: $padding-large;
 			text-align: left;
-			font-size: 2rem;
+			font-size: $padding-large;
 		}
 
-		&-searchIcon {
+		&-searchButton {
 			text-align: right
 		}
 	}

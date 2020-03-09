@@ -1,17 +1,12 @@
 <template lang="html">
 	<div id="app">
-		<itinerary></itinerary>
+		<router-view></router-view>
 	</div>
 </template>
 
 <script>
-	import Itinerary from './components/Itinerary.vue'
-
 	export default {
-		name: 'app',
-		components: {
-			Itinerary
-		}
+		name: 'app'
 	}
 </script>
 
