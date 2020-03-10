@@ -1,11 +1,9 @@
 <template lang="html">
-	<div class="HeaderPanel">
-		<span class="HeaderPanel-title">{{ titleP1 + ' '  }}
-			<span class="HeaderPanel-titleP2" :style="{ color: secondColor }">{{ titleP2 }}</span>
-		</span>
-		<i class="HeaderPanel-close material-icons"
-		@click="closePanel"
-		alt="Close header panel"
+	<div class="HeaderPopup">
+		<span class="HeaderPopup-title">{{ title }}</span>
+		<i class="HeaderPopup-close material-icons"
+		@click="closePopup"
+		alt="Close popup"
 		:style="{ color: getColor }"
 		@mouseover="hover = true"
     @mouseleave="hover = false">close</i>
@@ -17,11 +15,7 @@
 
 	export default {
 		props: {
-			titleP1: {
-				type: String,
-				required: true
-			},
-			titleP2: {
+			title: {
 				type: String,
 				required: true
 			}
@@ -38,8 +32,8 @@
 			}
 		},
 		methods: {
-			closePanel (event) {
-				this.$emit('closePanel')
+			closePopup (event) {
+				this.$emit('closePopup')
 			}
 		}
 	}
@@ -49,7 +43,7 @@
 	@import '../../../common/scss/_variables';
 	@import '../../../common/scss/_mixins';
 
-	.HeaderPanel {
+	.HeaderPopup {
 		display: flex;
     align-items: center;
     margin-bottom: $padding-large;
@@ -62,10 +56,6 @@
 			font-size: $font-medium;
 			font-weight: 300;
 			color: $fontColor-lightWhite;
-		}
-
-		&-titleP2 {
-			font-weight: 600;
 		}
 
 		&-close {

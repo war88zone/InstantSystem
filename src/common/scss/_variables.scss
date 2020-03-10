@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&display=swap');
 
+// PADDING
 $padding-xlarge: 2.5rem;
 $padding-large: 2rem;
 $padding-medium: 1.5rem;
@@ -7,21 +8,34 @@ $padding-small: 1rem;
 $padding-xsmall: .6rem;
 $padding-tiny: .4rem;
 
+// FONT SIZE
 $font-large: 2rem;
 $font-medium: 1.5rem;
 $font-small: 1rem;
 $font-xsmall: .9rem;
 $font-tiny: .8rem;
 
+// FONT COLOR
+$fontColor-lightWhite: rgba(255, 255, 255, 0.6);
+$fontColor-white: #ffffff;
+$fontColor-grey-light: #bdbdbd;
+$fontColor-grey: #b3b3b3;
+$fontColor-black-transparent: rgba(0, 0, 0, .5);
+$fontColor-black-light: #474743;
+$fontColor-black: #000;
+
+// BOX SHADOW
+$boxShadow-light: 0 1px 10px 1px rgba(0, 0, 0, .4);
+
+// BORDER RADIUS
 $borderRadius-large: 15px;
 $borderRadius-medium: 5px;
 
+// STATIC SIZE
 $menuHeight: calc(40px + 2rem);
-$mapHeight: calc(100vh - #{$menuHeight} - #{$menuHeight});
+$contentHeight: calc(100vh - #{$menuHeight} - #{$menuHeight});
+$contentHeight-desktop: calc(100vh - #{$menuHeight});
 $horizontalPanel-landscape: calc(100% - #{$menuHeight} - #{$menuHeight});
 $horizontalPanel-portrait: calc(80% - #{$menuHeight});
 $panelComponentHeight: 35px;
-
-$fontColor-lightWhite: rgba(255, 255, 255, 0.6);
-
-$boxShadow-light: 0 1px 10px 1px rgba(0, 0, 0, .4);
+$menuVerticalWidth: 250px;

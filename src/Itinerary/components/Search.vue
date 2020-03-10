@@ -1,24 +1,32 @@
 <template lang="html">
 	<div class="Search" :style="{ backgroundColor: mainColor }">
-		<header-mobile></header-mobile>
+		<!-- HEADER -->
+		<header-mobile v-if="isBreakpointPhone"></header-mobile>
+		<header-tablet-desktop v-else></header-tablet-desktop>
 	</div>
 </template>
 
 <script>
 	import { mapState } from 'vuex'
 	import * as actionTypes from './../store/action-types.js'
+	import * as breakpoints from './../../common/js/global-breakpoints.js'
 	import HeaderMobile from './header/HeaderMobile.vue'
+	import HeaderTabletDesktop from './header/HeaderTabletDesktop.vue'
 
 	export default {
 		components: {
-			HeaderMobile
+			HeaderMobile,
+			HeaderTabletDesktop
 		},
 		mounted () {
 			// Get values from API (here faked)
       this.$store.dispatch(actionTypes.INIT)
     },
 		computed: {
-			...mapState(['mainColor'])
+			...mapState(['mainColor']),
+			isBreakpointPhone () {
+        return this.$_globalMixin_currentBreakpoint === breakpoints.BREAKPOINT_PHONE
+      }
 		}
   }
 </script>

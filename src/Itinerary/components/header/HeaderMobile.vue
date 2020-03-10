@@ -1,14 +1,15 @@
 <template lang="html">
 	<div class="HeaderMobile">
-		<burger-button class="HeaderMobile-burgerButton"></burger-button>
+		<burger-button class="HeaderMobile-burgerButton" @openBurgerMenu="openBurgerMenu"></burger-button>
 		<logo-header></logo-header>
-		<router-link :to="'/search'">
+		<router-link class="HeaderMobile-link" :to="'/search'">
 			<search-button class="HeaderMobile-searchButton"></search-button>
 		</router-link>
 	</div>
 </template>
 
 <script>
+	import * as mutationTypes from './../../store/mutation-types.js'
 	import BurgerButton from './BurgerButton.vue'
 	import LogoHeader from './LogoHeader.vue'
 	import SearchButton from './SearchButton.vue'
@@ -18,6 +19,11 @@
 			BurgerButton,
 			LogoHeader,
 			SearchButton
+		},
+		methods: {
+			openBurgerMenu () {
+				this.$store.commit(mutationTypes.UPDATE_SHOW_BURGER_MENU, true)
+			}
 		}
 	}
 </script>
@@ -29,8 +35,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: $menuHeight;
     padding: $padding-small $padding-medium;
-    background-color: white;
+    background-color: $fontColor-white;
 
 		&-burgerButton,
 		&-searchButton {

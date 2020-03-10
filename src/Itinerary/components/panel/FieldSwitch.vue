@@ -16,15 +16,15 @@
 
 	export default {
 		props: {
-			title: {
-				type: String,
-				required: true
-			},
 			label1: {
 				type: String,
 				required: true
 			},
 			label2: {
+				type: String,
+				required: true
+			},
+			title: {
 				type: String,
 				required: true
 			}
@@ -36,11 +36,11 @@
 		},
 		computed: {
 			...mapState(['mainColor', 'secondColor']),
-			getIsFirstElementSelected () {
-				return this.firstElementSelected
-			},
 			getActiveColor () {
 				return this.firstElementSelected ? this.mainColor : 'rgba(255, 255, 255, 0.6)'
+			},
+			getIsFirstElementSelected () {
+				return this.firstElementSelected
 			},
 			getPassiveColor () {
 				return this.firstElementSelected ? 'rgba(255, 255, 255, 0.6)' : this.mainColor
@@ -100,7 +100,7 @@
 			width: calc(50% - 2px);
 			height: calc(100% - 4px);
 			border-radius: $borderRadius-medium;
-			background-color: white;
+			background-color: $fontColor-white;
 			transition: left .3s ease-in-out;
 
 			&--rightSide {

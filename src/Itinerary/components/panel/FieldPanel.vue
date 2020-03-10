@@ -1,7 +1,7 @@
 <template lang="html">
 	<div class="FieldPanel">
 		<span class="FieldPanel-title" :style="{ color: secondColor }">{{ title }}</span>
-		<input class="FieldPanel-input" :placeholder="placeholder">
+		<input class="FieldPanel-input" :value="value" :placeholder="placeholder" @change="fieldChanged">
 	</div>
 </template>
 
@@ -14,6 +14,11 @@
 				type: String,
 				required: true
 			},
+			value: {
+				type: String,
+				required: false,
+				default: ''
+			},
 			placeholder: {
 				type: String,
 				required: false,
@@ -22,6 +27,11 @@
 		},
 		computed: {
 			...mapState(['mainColorLight', 'secondColor'])
+		},
+		methods: {
+			fieldChanged (event) {
+				this.$emit('fieldChanged', event.target.value)
+			}
 		}
 	}
 </script>
@@ -47,10 +57,10 @@
 		&-input {
 			height: $panelComponentHeight;
 			border: none;
-			border-bottom: 1px solid white;
+			border-bottom: 1px solid $fontColor-white;
 			font-family: 'Open Sans', sans-serif;
 			font-size: $font-xsmall;
-			color: white;
+			color: $fontColor-white;
 			background-color: transparent;
 			outline: none;
 

@@ -1,7 +1,7 @@
 <template lang="html">
-	<transition name="slide" class="HorizontalPanel" v-on:after-leave="animationFinished" mode="out-in">
-    <div v-show="showHorizontalPanel"
-    class="HorizontalPanel-content"
+	<transition name="pop" class="PanelHorizontal" v-on:after-leave="animationFinished" mode="out-in">
+    <div v-show="showPanel"
+    class="PanelHorizontal-content"
     :style="{ backgroundColor: mainColor}">
 			<header-panel :titleP1="titleP1" :titleP2="titleP2" @closePanel="closePanel"></header-panel>
 			<keep-alive>
@@ -33,7 +33,7 @@
 				type: String,
 				required: true
 			},
-			showHorizontalPanel: {
+			showPanel: {
 				type: Boolean,
 				required: true
 			},
@@ -58,10 +58,10 @@
 			closePanel () {
 				// -1 value is here meaning menu items are all inactive
 				this.$store.commit(mutationTypes.UPDATE_CURRENT_MENU_ITEM_ACTIVE, -1)
-				this.$emit('hideHorizontalPanel')
+				this.$emit('hidePanel')
 			},
 			animationFinished () {
-				this.$emit('horizontalPanelClosed')
+				this.$emit('panelClosed')
 				this.isClosing = false
 			}
 		}
@@ -71,7 +71,7 @@
 <style lang="scss" scoped>
 	@import '../../../common/scss/_variables';
 
-	.HorizontalPanel {
+	.PanelHorizontal {
 		&-content {
 			position: absolute;
 			bottom: $menuHeight;
@@ -83,17 +83,17 @@
 	}
 
 	@media (orientation: landscape) {
-		.HorizontalPanel-content {
+		.PanelHorizontal-content {
 			height: $horizontalPanel-landscape;
 		}
 	}
 
-	.slide-enter-active,
-	.slide-leave-active {
+	.pop-enter-active,
+	.pop-leave-active {
 		transition: transform .3s ease-in-out, opacity .3s ease-in-out;
 	}
 
-	.slide-enter, .slide-leave-to {
+	.pop-enter, .pop-leave-to {
 		transform: scale(0.95);
 		opacity: 0;
 	}

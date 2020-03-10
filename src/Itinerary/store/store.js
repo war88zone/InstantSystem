@@ -9,14 +9,19 @@ const store = new Vuex.Store({
 	actions,
 	mutations,
 	state: {
+		availableLangs: [],
 		currentMenuItemActive: -1,
+		currentLang: 'FR',
 		logoHeader: '',
 		mainColor: '',
 		mainColorDark: '',
 		mainColorLight: '',
 		menuItems: [],
+		menuLinks: [],
 		secondColor: '',
-		showPanel: false
+		showBurgerMenu: false,
+		showPanel: false,
+		showPopup: false
 	}
 })
 

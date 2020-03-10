@@ -3,7 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import {createRouter} from './../router/router.js'
+import {globalMixin} from './../common/js/global-mixin.js'
 import store from './store/store.js'
+
+// Inject mixins
+Vue.mixin(globalMixin)
 
 Vue.config.productionTip = false
 

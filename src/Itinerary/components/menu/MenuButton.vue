@@ -1,13 +1,19 @@
 <template lang="html">
-	<div :class="isActive ? 'MenuButton--active': ''" class="MenuButton" @click="switchActive">
+	<div :class="{ 'MenuButton--active' : isActive, 'MenuButton-vertical' : verticalMod }"
+		class="MenuButton"
+		:style="{ backgroundColor: getBackgroundColor }"
+		@click="switchActive"
+		@mouseover="hover = true"
+    @mouseleave="hover = false">
 		<div class="MenuButton-triangle" :style="{ borderColor: getBorderColor}"></div>
-		<i class="MenuButton-icon material-icons" :style="{ color: getTextColor}">{{ icon }}</i>
-		<span class="MenuButton-label" :style="{ color: getTextColor}">{{ label }}</span>
+		<i class="MenuButton-icon material-icons" :style="{ color: getTextColor }">{{ icon }}</i>
+		<span class="MenuButton-label" :style="{ color: getTextColor }">{{ getLabel }}</span>
 	</div>
 </template>
 
 <script>
 	import { mapState } from 'vuex'
+	import * as breakpoints from './../../../common/js/global-breakpoints.js'
 
 	export default {
 		props: {
@@ -20,23 +26,47 @@
 				required: false,
 				default: false
 			},
+			icon: {
+				type: String,
+				required: true
+			},
 			label: {
 				type: String,
 				required: true
 			},
-			icon: {
+			labelFull: {
 				type: String,
-				required: true
+				required: false,
+				default: ''
+			},
+			verticalMod: {
+				type: Boolean,
+				required: false,
+				default: false
+			}
+		},
+		data () {
+			return {
+				hover: false
 			}
 		},
 		computed: {
 			...mapState(['mainColor', 'mainColorLight', 'secondColor']),
+			getBackgroundColor () {
+				return this.hover && this.isBreakpointDesktop ? this.mainColor : ''
+			},
 			getBorderColor () {
-				return 'transparent transparent ' + this.mainColorLight + ' transparent'
+				return this.verticalMod ? 'transparent transparent transparent' + this.mainColorLight : 'transparent transparent ' + this.mainColorLight + ' transparent'
+			},
+			getLabel () {
+				return this.isBreakpointDesktop ? this.labelFull : this.label
 			},
 			getTextColor () {
-				return this.isActive ? this.secondColor : this.mainColor
-			}
+				return this.hover && !this.isActive && this.isBreakpointDesktop ? this.mainColorLight : this.isActive ? this.secondColor : this.mainColor
+			},
+			isBreakpointDesktop () {
+        return this.$_globalMixin_currentBreakpoint === breakpoints.BREAKPOINT_DESKTOP
+      }
 		},
 		methods: {
 			switchActive (event) {
@@ -59,7 +89,32 @@
     width: 25%;
 		height: 100%;
 		padding: 0 $padding-tiny;
-		border-right: 1px dashed white;
+		border-right: 1px dashed $fontColor-white;
+		cursor: pointer;
+		transition: background-color .3s ease-in-out;
+
+		&-vertical {
+			flex-direction: row;
+			justify-content: flex-start;
+			width: 100%;
+			height: 80px;
+			border-right: none;
+			border-bottom: 1px dashed $fontColor-white;
+
+			.MenuButton {
+				&-icon {
+					margin-bottom: 0;
+					margin-right: $padding-small;
+				}
+
+				&-triangle {
+					top: calc(50% - 10px);
+					left: calc(100% - 10px);
+					border-width: 10px 0 10px 10px;
+					transition: opacity .3s ease-in-out, left .3s ease-in-out;
+				}
+			}
+		}
 
 		&:last-child {
 			border-right: none;
@@ -85,6 +140,14 @@
 		&--active {
 			.MenuButton-triangle {
 				top: calc(-50% + 10px + #{$padding-tiny} / 2);
+				opacity: 1;
+			}
+		}
+
+		&--active.MenuButton-vertical {
+			.MenuButton-triangle {
+				top: calc(50% - 10px);
+				left: calc(100% + 15px);
 				opacity: 1;
 			}
 		}
